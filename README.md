@@ -30,7 +30,7 @@ dotfiles config --local status.showUntrackedFiles no
 ```bash
 dotfiles remote add origin git@gitlab.com:michaelarn0ld/dotfiles.git
 dotfiles branch -M main
-dotfiles pull
+dotfiles pull origin main
 ```
 
 - Changes and updates are stored using:
