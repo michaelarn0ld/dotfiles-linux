@@ -5,12 +5,10 @@ for aliases, bash, and vim.
 
 ## Installation
 
-- Navigate to $HOME to install the folder:
+- Download the .aliases file to the $HOME folder
 ```bash
 git clone https://gitlab.com/michaelarn0ld/dotfiles.git
 ``` 
-- Move all dotfiles from the clone to $HOME except for .git and delete
-  the folder
 
 ## Usage
 
@@ -31,6 +29,11 @@ dotfiles config --local status.showUntrackedFiles no
 ```bash
 dotfiles remote add origin git@gitlab.com:michaelarn0ld/dotfiles.git
 dotfiles branch -M main
+dotfiles pull
+```
+
+- Changes and updates are stored using:
+```bash
 dotfiles add ~/.dotfile_name
 dotfiles commit -m "added .dotfile_name"
 dotfiles push -u origin main 
