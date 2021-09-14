@@ -5,7 +5,11 @@ for aliases, bash, and vim.
 
 ## Installation
 
-- Download the .aliases file to the $HOME folder
+- Download the .aliases file and move to the $HOME folder
+```bash
+mv ~/downloads/aliases $HOME/.aliases
+```
+
 
 ## Usage
 
