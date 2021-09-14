@@ -6,9 +6,6 @@ for aliases, bash, and vim.
 ## Installation
 
 - Download the .aliases file to the $HOME folder
-```bash
-git clone https://gitlab.com/michaelarn0ld/dotfiles.git
-``` 
 
 ## Usage
 
