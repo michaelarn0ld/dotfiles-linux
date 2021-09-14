@@ -27,10 +27,9 @@ dotfiles config --local status.showUntrackedFiles no
 - Create an SSH key for the computer being used and add it to GitLab; follow
   the guide here: https://docs.gitlab.com/ee/ssh/
  
-- Start a new empty GitLab project repository and add the remote to the local
- $HOME/dotfiles:
+- Add the GitLab dotfiles remote to the local repositiry at $HOME/dotfiles:
 ```bash
-dotfiles remote add origin git@gitlab.com:michaelarn0ld/repo_name.git
+dotfiles remote add origin git@gitlab.com:michaelarn0ld/dotfiles.git
 dotfiles branch -M main
 dotfiles add ~/.dotfile_name
 dotfiles commit -m "added .dotfile_name"
