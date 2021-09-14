@@ -1,3 +1,5 @@
+# BASH PROFILE CONFIG FOR MICHAELARNOLD
+
 # PATH
 export PATH="$HOME/bin";
 export PATH="$HOME/.composer/vendor/bin:$PATH";
