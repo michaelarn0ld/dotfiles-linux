@@ -5,7 +5,7 @@ for aliases, bash, and vim.
 
 ## Usage
 
-- Make a new "dotfiles" folder and initialize it as a git repository
+- Make a $HOME/dotfiles directory and initialize it as a bare git repository
 ```bash
 cd ~
 mkdir dotfiles
