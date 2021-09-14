@@ -30,7 +30,7 @@ dotfiles config --local status.showUntrackedFiles no
 - Start a new empty GitLab project repository and add the remote to the local
  $HOME/dotfiles:
 ```bash
-dotfiles remote add origin git@gitlab.com:michaelarn0ld/<<repo_name>>.git
+dotfiles remote add origin git@gitlab.com:michaelarn0ld/repo_name.git
 dotfiles branch -M main
 dotfiles add ~/.dotfile_name
 dotfiles commit -m "added .dotfile_name"
