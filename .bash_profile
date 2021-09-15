@@ -9,6 +9,7 @@ export PATH="/usr/bin:$PATH"
 export PATH="/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
 export PATH="/sbin:$PATH"
+export PATH="$HOME/scripts:$PATH" # add bash scripts to search path
 
 # SETTINGS
 source ~/.bash_prompt

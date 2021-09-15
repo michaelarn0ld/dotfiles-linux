@@ -1,7 +1,7 @@
 # Dotfiles
 
-Dotfiles is a backup repository containing my personal configuration settings
-for aliases, bash, and vim
+Dotfiles is a backup repository containing command line scripts and
+configuration settings for aliases, bash, and vim
 
 ## Usage
 
