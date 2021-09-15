@@ -1,7 +1,7 @@
 # Dotfiles
 
 Dotfiles is a backup repository containing my personal configuration settings
-for aliases, bash, and vim.
+for aliases, bash, and vim
 
 ## Usage
 
@@ -21,10 +21,7 @@ git init --bare $HOME/dotfiles
 /usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME pull origin main
 ```
 
-- Restart the shell and you will see the updates
-
-- Note that the "dotfiles" command is an alias for git, specific to the $HOME/dotfiles directory.
-  See .aliases for more information.
+- Restart the shell to register the config settings
 
 - Changes and updates are stored using:
 ```bash
@@ -32,3 +29,6 @@ dotfiles add ~/.dotfile_name
 dotfiles commit -m "added .dotfile_name"
 dotfiles push -u origin main 
 ```
+
+- Note that the "dotfiles" command is an alias for git, specific to the $HOME/dotfiles directory.
+  See .aliases for more information
