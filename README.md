@@ -21,7 +21,7 @@ git init --bare $HOME/dotfiles
 /usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME pull origin main
 ```
 
-- Restart the shell to register the config settings
+- Restart the shell to register the configuration settings
 
 - Changes and updates are stored using:
 ```bash
