@@ -23,7 +23,7 @@ git init --bare $HOME/dotfiles
 
 - Restart the shell to register the configuration settings
 
-- Changes and updates are stored using:
+- Changes to the dotfile repository are updated to the remote using: 
 ```bash
 dotfiles add ~/.dotfile_name
 dotfiles commit -m "added .dotfile_name"
