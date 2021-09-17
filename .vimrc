@@ -3,6 +3,7 @@
 """"""""""""""""""""""""
 
 call plug#begin()
+Plug 'pangloss/vim-javascript'
 Plug 'fatih/vim-go'
 Plug 'morhetz/gruvbox'
 Plug 'mattn/emmet-vim'
