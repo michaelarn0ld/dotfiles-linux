@@ -2,8 +2,8 @@
 
 # ---- configuration settings for your zet --------
 EDITOR=vim
-PUBLIC=$HOME/documents/repos/zet
-PRIVATE=$HOME/documents/private/zet
+PUBLIC=$HOME/documents/repos/zettelkasten-public
+PRIVATE=$HOME/documents/private/zettelkasten-private
 OPTION=$PUBLIC
 
 # ---- commands for zet ------
@@ -27,6 +27,9 @@ x_create() {
   line=$(head -1 "$dir/README.md" | sed 's/#\+ *//')
   test -n "$line"
   echo "Committing: $line"
+  git add -A "$dir" &>/dev/null
+  git commit -m "$line" &>/dev/null
+  git push &>/dev/null
 }
 
 # ---- handling command line args ---------
@@ -46,6 +49,10 @@ if [[ -n $COMP_LINE ]]; then
 fi
 
 if [[ -n "$1" ]]; then
+  if [ "$1" = "--private" -o "$1" = "-p" ]; then
+    OPTION=$PRIVATE
+    shift 1
+  fi
   declare CMD="$1"; shift
   for c in "${COMMANDS[@]}"; do
     if [[ $c == "$CMD" ]]; then
