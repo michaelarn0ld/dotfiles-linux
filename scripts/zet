@@ -1,0 +1,56 @@
+#!/opt/homebrew/bin/bash
+
+# ---- configuration settings for your zet --------
+EDITOR=vim
+PUBLIC=$HOME/documents/repos/zet
+PRIVATE=$HOME/documents/private/zet
+OPTION=$PUBLIC
+
+# ---- commands for zet ------
+x_isosec() { date -u +%Y%m%d%H%M ; }
+
+x_dir() {
+  local dir="$OPTION"
+  mkdir -p "$dir" && echo "$dir"
+}
+
+x_create() {
+  local title="$*"
+  local dir readme
+  dir="$(x_dir)/$(x_isosec)"
+  readme="$dir/README.md"
+  mkdir -p "$dir"
+  printf "# %s\n\n" "$title" > "$readme"
+  "$EDITOR" "$readme"
+  cd "$dir" &>/dev/null
+  [[ -s "$dir/README.md" ]] || return 1
+  line=$(head -1 "$dir/README.md" | sed 's/#\+ *//')
+  test -n "$line"
+  echo "Committing: $line"
+}
+
+# ---- handling command line args ---------
+while IFS= read -r line; do
+  [[ $line =~ ^declare\ -f\ x_ ]] || continue
+  COMMANDS+=( "${line##declare -f x_}" )
+done < <(declare -F)
+mapfile -t COMMANDS < \
+  <(LC_COLLATE=C sort < <(printf "%s\n" "${COMMANDS[@]}"))
+
+if [[ -n $COMP_LINE ]]; then
+  line=${COMP_LINE#* }
+  for c in "${COMMANDS[@]}"; do
+    [[ ${c:0:${#line}} == "${line,,}" ]] && echo "$c"
+  done
+  exit
+fi
+
+if [[ -n "$1" ]]; then
+  declare CMD="$1"; shift
+  for c in "${COMMANDS[@]}"; do
+    if [[ $c == "$CMD" ]]; then
+      "x_$CMD" "$@"
+      exit $?
+    fi
+  done
+fi
