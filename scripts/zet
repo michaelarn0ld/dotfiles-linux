@@ -7,17 +7,22 @@ PRIVATE=$HOME/documents/private/zettelkasten-private
 OPTION=$PUBLIC
 
 # ---- commands for zet ------
-x_isosec() { date -u +%Y%m%d%H%M ; }
+x_isomin() { date -u +%Y%m%d%H%M ; }
 
 x_dir() {
   local dir="$OPTION"
   mkdir -p "$dir" && echo "$dir"
 }
 
+x_all() {
+    local dir="$(x_dir)"
+    ls $dir | grep -v '.md'
+}
+
 x_create() {
   local title="$*"
   local dir readme
-  dir="$(x_dir)/$(x_isosec)"
+  dir="$(x_dir)/$(x_isomin)"
   readme="$dir/README.md"
   mkdir -p "$dir"
   printf "# %s\n\n" "$title" > "$readme"
@@ -27,9 +32,19 @@ x_create() {
   line=$(head -1 "$dir/README.md" | sed 's/#\+ *//')
   test -n "$line"
   echo "Committing: $line"
-  git add -A "$dir" &>/dev/null
-  git commit -m "$line" &>/dev/null
-  git push &>/dev/null
+  #git add -A "$dir" &>/dev/null
+  #git commit -m "$line" &>/dev/null
+  #git push &>/dev/null
+}
+
+x_find() {
+    local dir="$(x_dir)"
+    readarray -t arr <<< "$(x_all)"
+    for i in "${arr[@]}"; do
+        # TODO: parse the README file and check if the find option
+        # exists in the last line -> if it does, add that file to the output
+        cat $dir/$i/README.md
+    done
 }
 
 # ---- handling command line args ---------
@@ -39,14 +54,6 @@ while IFS= read -r line; do
 done < <(declare -F)
 mapfile -t COMMANDS < \
   <(LC_COLLATE=C sort < <(printf "%s\n" "${COMMANDS[@]}"))
-
-if [[ -n $COMP_LINE ]]; then
-  line=${COMP_LINE#* }
-  for c in "${COMMANDS[@]}"; do
-    [[ ${c:0:${#line}} == "${line,,}" ]] && echo "$c"
-  done
-  exit
-fi
 
 if [[ -n "$1" ]]; then
   if [ "$1" = "--private" -o "$1" = "-p" ]; then
