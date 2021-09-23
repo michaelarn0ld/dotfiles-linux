@@ -1,70 +1,139 @@
 #!/opt/homebrew/bin/bash
 
+# -------------------------------------------------
 # ---- configuration settings for your zet --------
+# -------------------------------------------------
+
 EDITOR=vim
 PUBLIC=$HOME/documents/repos/zettelkasten-public
 PRIVATE=$HOME/documents/private/zettelkasten-private
 OPTION=$PUBLIC
 
-# ---- commands for zet ------
+
+# -----------------------------------------
+# ----------- commands for zet ------------
+# -----------------------------------------
+
+## returns the current UTC date time as YYYYMMDDHHMM
 x_isomin() { date -u +%Y%m%d%H%M ; }
 
+## sets the session directory to either the public or private zk
 x_dir() {
   local dir="$OPTION"
   mkdir -p "$dir" && echo "$dir"
 }
 
+## returns all zettels from the session directory
 x_all() {
     local dir="$(x_dir)"
     ls $dir | grep -v '.md'
 }
 
+## creates a new zettel in the session directory & pushes to git repo after wq
 x_create() {
   local title="$*"
   local dir readme
   dir="$(x_dir)/$(x_isomin)"
   readme="$dir/README.md"
   mkdir -p "$dir"
-  printf "# %s\n\n" "$title" > "$readme"
+  printf "%s\n\n%s\n" "# $title" "## Tags" > "$readme"
   "$EDITOR" "$readme"
   cd "$dir" &>/dev/null
   [[ -s "$dir/README.md" ]] || return 1
   line=$(head -1 "$dir/README.md" | sed 's/#\+ *//')
   test -n "$line"
   echo "Committing: $line"
-  #git add -A "$dir" &>/dev/null
-  #git commit -m "$line" &>/dev/null
-  #git push &>/dev/null
+  git add -A "$dir" &>/dev/null
+  git commit -m "$line" &>/dev/null
+  git push &>/dev/null
 }
 
+## finds all zettels which contain a matching tag
 x_find() {
+    local tag="#$1"
     local dir="$(x_dir)"
-    readarray -t arr <<< "$(x_all)"
-    for i in "${arr[@]}"; do
-        # TODO: parse the README file and check if the find option
-        # exists in the last line -> if it does, add that file to the output
-        cat $dir/$i/README.md
+    readarray -t directories <<< "$(x_all)"
+    for i in "${directories[@]}"; do
+        readarray -t tags <<< "$(tail -1 $dir/$i/README.md | tr ' ' '\n')"
+        for j in "${tags[@]}"; do
+            if [[ $j == $tag ]]; then
+                echo "$i -> $(head -1 $dir/$i/README.md)"
+            fi
+        done
     done
 }
 
+## echoes the markdown to link a given zettel
+x_link() {
+    readarray -t directories <<< "$(x_all)"
+    if [[ " ${directories[*]} " =~ " $1 " ]]; then
+        echo "[$1](../$1)"
+    fi
+}
+
+## reads the contents of a given zettel
+x_read() {
+    readarray -t directories <<< "$(x_all)"
+    if [[ " ${directories[*]} " =~ " $1 " ]]; then
+        cat $(x_dir)/$1/README.md
+    fi
+}
+
+
+# -----------------------------------------
 # ---- handling command line args ---------
+# -----------------------------------------
+
+## parse the zet file and store the commands
 while IFS= read -r line; do
-  [[ $line =~ ^declare\ -f\ x_ ]] || continue
-  COMMANDS+=( "${line##declare -f x_}" )
+    [[ $line =~ ^declare\ -f\ x_ ]] || continue
+    COMMANDS+=( "${line##declare -f x_}" )
 done < <(declare -F)
 mapfile -t COMMANDS < \
-  <(LC_COLLATE=C sort < <(printf "%s\n" "${COMMANDS[@]}"))
+    <(LC_COLLATE=C sort < <(printf "%s\n" "${COMMANDS[@]}"))
 
+## check if there is command given
 if [[ -n "$1" ]]; then
-  if [ "$1" = "--private" -o "$1" = "-p" ]; then
-    OPTION=$PRIVATE
-    shift 1
-  fi
-  declare CMD="$1"; shift
-  for c in "${COMMANDS[@]}"; do
-    if [[ $c == "$CMD" ]]; then
-      "x_$CMD" "$@"
-      exit $?
+
+    ## shows usage of zet
+    if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+        echo "
+        commands:
+        create <<zettel>>  :    creates a new zettel
+        find <<tag>>       :    finds all zettels that have a matching tag
+        link <<zettel>>    :    echoes the markdown to link to a zettel
+        read <<zettel>>    :    prints the contents of a zettel
+        all                :    lists all zettels
+
+        options:
+        -p || --private    :    uses the private zettel repo for all commands
+        "
+        exit 0
     fi
-  done
+
+    ## sets the session directory to $PRIVATE else it defaults to $PUBLIC
+    if [[ "$1" == "--private" || "$1" == "-p" ]]; then
+        OPTION=$PRIVATE
+        shift 1
+    fi
+
+    ## no valid options were given, check and see if the arg is a valid command
+    declare CMD="$1"; shift
+
+    ## command is not valid, reccomend to look at usage
+    if [[ ! "${COMMANDS[*]}" =~ "$CMD" ]]; then
+        echo "invalid usage: -h or --help for help"
+        exit 0
+    fi
+
+    for c in "${COMMANDS[@]}"; do
+        ## excecute proper x_command()
+        if [[ $c == "$CMD" ]]; then
+            "x_$CMD" "$@"
+            exit $?
+        fi
+    done
 fi
+
+## no command provided, reccomend to look at usage
+echo "invalid usage: -h or --help for help"
