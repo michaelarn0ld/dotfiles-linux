@@ -17,7 +17,7 @@ git init --bare $HOME/dotfiles
  
 - Add the GitLab dotfiles remote to the local repositiry at $HOME/dotfiles:
 ```bash
-/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME remote add origin git@gitlab.com:michaelarn0ld/dotfiles.git
+/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME remote add origin git@gitlab.com:michaelarn0ld/dotfiles-linux.git
 /usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME pull origin main
 ```
 
@@ -32,6 +32,20 @@ dotfiles push -u origin main
 
 - Note that the "dotfiles" command is an alias for git, specific to the $HOME/dotfiles directory.
   See .aliases for more information
+
+- Note that you will need to install 'vim-plug' to have access to the vim
+  configuration. Do this after pulling the repo from gitlab.
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+- Note that if it is a fresh install, you will need to make the directories
+  for vim swap, undo, and backup. Do this after you pull the repo from gitlab;
+  if not, vim will give you an error.
+```bash
+cd ~/.vim && mkdir swap backupdir swapdir undodir
+```
 
 ## License
 
