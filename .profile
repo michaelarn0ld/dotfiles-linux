@@ -21,13 +21,12 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+# set PATH so it includes user's private bin
+PATH="$HOME/.local/bin:$PATH"
 
-# set PATH so it includes user created scripts
-PATH="$HOME/scripts:$PATH" # add bash scripts to search path
+# set PATH so it includes user's custom scripts
+PATH="$HOME/scripts:$PATH"
+
 
 # SETTINGS
 source ~/.bash_prompt
