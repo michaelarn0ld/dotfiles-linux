@@ -5,8 +5,8 @@
 # -------------------------------------------------
 
 EDITOR=vim
-PUBLIC=$HOME/documents/repos/zettelkasten-public
-PRIVATE=$HOME/documents/private/zettelkasten-private
+PUBLIC=$HOME/Public/repos/zettelkasten-public
+PRIVATE=$HOME/Private/repos/zettelkasten-private
 OPTION=$PUBLIC
 
 

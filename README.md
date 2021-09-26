@@ -40,11 +40,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-- Note that if it is a fresh install, you will need to make the directories
-  for vim swap, undo, and backup. Do this after you pull the repo from gitlab;
-  if not, vim will give you an error.
+- Note you will need to make the directories for vim swap, undo, and backup.
+  Do this after you pull the repo from gitlab; if not, vim will give you an error.
 ```bash
-cd ~/.vim && mkdir swap backupdir swapdir undodir
+cd ~/.vim && mkdir backupdir swapdir undodir
 ```
 
 ## License
