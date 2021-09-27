@@ -7,7 +7,7 @@
 # ---- configuration settings for your zet --------
 # -------------------------------------------------
 
-EDITOR=vim
+ZET_EDITOR=$EDITOR
 PUBLIC=$HOME/Public/repos/zettelkasten-public
 PRIVATE=$HOME/Private/repos/zettelkasten-private
 OPTION=$PUBLIC
@@ -22,8 +22,8 @@ x_isomin() { date -u +%Y%m%d%H%M ; }
 
 ## sets the session directory to either the public or private zk
 x_dir() {
-  local dir="$OPTION"
-  mkdir -p "$dir" && echo "$dir"
+    local dir="$OPTION"
+    mkdir -p "$dir" && echo "$dir"
 }
 
 ## returns all zettels from the session directory
@@ -32,23 +32,57 @@ x_all() {
     ls $dir | grep -v '.md'
 }
 
+## pulls zettelkasten from respective gitlab repo
+x_pull() {
+    local dir="$(x_dir)"
+    cd "$dir" &>/dev/null
+    git pull &>/dev/null
+} 
+
+## pushes zettelkasten changes to respective gitlab repo
+x_push() {
+    local dir="$(x_dir)"
+    cd "$dir" &>/dev/null
+    git add -A "$dir" &>/dev/null
+    if [[ -n "$*" ]]; then
+        git commit -m "$*" &>/dev/null
+    else
+        git commit -m "Updated Zettelkasten: $(date -u)" &>/dev/null
+    fi
+    git push &>/dev/null
+}
+
 ## creates a new zettel in the session directory & pushes to git repo after wq
 x_create() {
-  local title="$*"
-  local dir readme
-  dir="$(x_dir)/$(x_isomin)"
-  readme="$dir/README.md"
-  mkdir -p "$dir"
-  printf "%s\n\n%s\n" "# $title" "## Tags" > "$readme"
-  "$EDITOR" "$readme"
-  cd "$dir" &>/dev/null
-  [[ -s "$dir/README.md" ]] || return 1
-  line=$(head -1 "$dir/README.md" | sed 's/#\+ *//')
-  test -n "$line"
-  echo "Committing: $line"
-  git add -A "$dir" &>/dev/null
-  git commit -m "$line" &>/dev/null
-  git push &>/dev/null
+    local title="$*"
+    local dir readme
+    dir="$(x_dir)/$(x_isomin)"
+    readme="$dir/README.md"
+    mkdir -p "$dir"
+    printf "%s\n\n%s\n" "# $title" "## Tags" > "$readme"
+    "$ZET_EDITOR" "$readme"
+    cd "$dir" &>/dev/null
+    [[ -s "$dir/README.md" ]] || return 1
+    line=$(head -1 "$dir/README.md" | sed 's/#\+ *//')
+    test -n "$line"
+    echo "Committing: $line"
+    $(x_push $line)
+}
+
+## edits a zettel and pushes it to respective gitlab repo
+x_edit() {
+    readarray -t directories <<< "$(x_all)"
+    if [[ " ${directories[*]} " =~ " $1 " ]]; then
+        local dir="$(x_dir)/$1"
+        readme="$dir/README.md"
+        "$ZET_EDITOR" "$readme"
+        cd "$dir" &>/dev/null
+        [[ -s "$dir/README.md" ]] || return 1
+        line="$(head -1 "$dir/README.md" | sed 's/#\+ *//') (Updated: $(date -u))"
+        test -n "$line"
+        echo "Committing: $line"
+        $(x_push $line)
+    fi
 }
 
 ## finds all zettels which contain a matching tag
@@ -102,11 +136,14 @@ if [[ -n "$1" ]]; then
     if [[ "$1" == "--help" || "$1" == "-h" ]]; then
         echo "
         commands:
-        create <<zettel>>  :    creates a new zettel
-        find <<tag>>       :    finds all zettels that have a matching tag
-        link <<zettel>>    :    echoes the markdown to link to a zettel
-        read <<zettel>>    :    prints the contents of a zettel
+        create <<zet>>     :    creates a new zettel
+        find <<zet_tag>    :    finds all zettels that have a matching tag
+        link <<zet_id>>    :    echoes the markdown to link to a zettel
+        read <<zet_id>>    :    prints the contents of a zettel
+        push <<message>>   :    commits zettelkasten to gitlab repo
+        edit <<zet_id>>    :    make changes to a zettel & push it 
         all                :    lists all zettels
+        pull               :    pulls zettelkasten from gitlab repo
 
         options:
         -p || --private    :    uses the private zettel repo for all commands
