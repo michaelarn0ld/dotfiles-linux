@@ -26,7 +26,6 @@ virtualenv_info(){
 # ----------------------------------------------------------------------
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-alias webcam='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 8 -f v4l2 /dev/video0'
 alias ls='ls -F --color'
 alias ..='cd ..'
 alias ...='cd ../../'
