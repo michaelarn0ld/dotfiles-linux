@@ -26,7 +26,7 @@ virtualenv_info(){
 # ----------------------------------------------------------------------
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-alias ls='ls -F'
+alias ls='ls -F --color'
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -38,7 +38,7 @@ alias ....='cd ../../../'
 # ----------------------------------------------------------------------
 
 # disable the standard virtual environment prompt addition
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+export VIRTUAL_ENV_DISABLE_PROMPT=1;
 
 # terminal prompt: \u\ = username, \W\ = current directory
 PS1="\[\e[0;92m\]\$(virtualenv_info)\[\e[m\]" 
@@ -51,5 +51,4 @@ PS1+="]"
 PS1+="$ " 
 
 export PS1;
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
+export CLICOLOR=1;
