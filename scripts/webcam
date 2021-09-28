@@ -1,5 +1,8 @@
 #!/bin/bash
 
+(( BASH_VERSINFO[0] < 4 )) && echo "Bash 4+ required." && exit 1
+
+
 # ----------------------------------------------------------------------
 # ------------------ configuration settings for webcam -----------------
 # ----------------------------------------------------------------------
@@ -15,14 +18,14 @@ x_detect() { gphoto2 --auto-detect; }
 
 x_status() { gphoto2 --summary; }
 
-x_start() { gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 8 -f v4l2 "$V4L2_WEBCAM"; }
+x_start() { gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 "$V4L2_WEBCAM"; }
 
 
 # ----------------------------------------------------------------------
 # --------------------- handling command line args ---------------------
 # ----------------------------------------------------------------------
 
-## parse the webcm file and store the commands
+## parse the webcam file and store the commands
 while IFS= read -r line; do
     [[ $line =~ ^declare\ -f\ x_ ]] || continue
     COMMANDS+=( "${line##declare -f x_}" )
