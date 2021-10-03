@@ -1,22 +1,46 @@
 # ----------------------------------------------------------------------
+# ----------------------------- VARIABLES ------------------------------
+# ----------------------------------------------------------------------
+
+PROMPT_AT=@
+r='\[\e[31m\]' # red
+g='\[\e[32m\]' # green
+y='\[\e[33m\]' # yellow
+b='\[\e[34m\]' # blue
+p='\[\e[35m\]' # purple
+a='\[\e[36m\]' # aqua
+w='\[\e[37m\]' # white
+x='\[\e[0m\]'  # reset
+z='\[\e[30m\]' # black
+
+
+
+# ----------------------------------------------------------------------
 # ----------------------------- FUNCTIONS ------------------------------
 # ----------------------------------------------------------------------
 
 # get the current git branch, if it exists
 git_branch() {
-    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+    local BRANCH=$(git branch --show-current 2>/dev/null) 
+    if [[ -n "$BRANCH" ]]; then
+        if [[ "$1" == "-l" ]]; then
+            echo "("
+        elif [[ "$1" == "-r" ]]; then
+            echo ")"
+        else 
+            echo "$BRANCH"
+        fi
+    fi
 }
 
 # get the current virtual environment, if it exists
-virtualenv_info(){
+venv_name(){
+    local VENV
     if [[ -n "$VIRTUAL_ENV" ]]; then
         # Strip out the path and just leave the env name
-        venv="${VIRTUAL_ENV##*/}"
-    else
-        # In case you don't have one activated
-        venv=''
+        VENV="${VIRTUAL_ENV##*/}" && echo "($VENV) "
     fi
-    [[ -n "$venv" ]] && echo "($venv) "
+
 }
 
 
@@ -37,18 +61,13 @@ alias ....='cd ../../../'
 # ------------------------------- PROMPT -------------------------------
 # ----------------------------------------------------------------------
 
-# disable the standard virtual environment prompt addition
-export VIRTUAL_ENV_DISABLE_PROMPT=1;
+# disable the standard prompt for virtual environment
+VIRTUAL_ENV_DISABLE_PROMPT=1;
 
-# terminal prompt: \u\ = username, \W\ = current directory
-PS1="\[\e[0;92m\]\$(virtualenv_info)\[\e[m\]" 
-PS1+="[" 
-PS1+="\[\e[0;93m\]\u\[\e[m\]" 
-PS1+=" " 
-PS1+="\[\e[0;95m\]\W\[\e[m\]" 
-PS1+="\[\e[0;92m\]\$(git_branch)\[\e[m\]" 
-PS1+="]" 
-PS1+="$ " 
+VENV="$r\$(venv_name)"                                            # (venv_name)
+USER="$g\u$z$PROMPT_AT"                                           # username@
+HOST="$a\h$z:"                                                    # hostname:
+DIR="$b\W"                                                        # directory
+BRANCH="$z\$(git_branch -l)$p\$(git_branch)$z\$(git_branch -r)$x" #(git_branch)
 
-export PS1;
-export CLICOLOR=1;
+PS1="$VENV$USER$HOST$DIR$BRANCH$ "

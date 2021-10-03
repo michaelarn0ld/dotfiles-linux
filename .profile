@@ -6,7 +6,7 @@
 PATH="$HOME/.local/bin:$PATH"
 
 # set PATH so it includes user's custom scripts
-PATH="$HOME/scripts:$PATH"
+PATH="$HOME/.local/bin/bash-scripts:$PATH"
 
 
 # ------------------------------------------------------------ 
