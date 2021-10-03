@@ -1,7 +1,6 @@
-# Dotfiles
-
-Dotfiles is a backup repository containing command line scripts and
-configuration settings for bash, vim, and other aspects of my linux system.
+# Linux Dotfiles
+Linux Dotfiles is a backup repository containing configuration settings for
+bash, vim, and other so-called "dotfiles" on my Linux system.
 
 ## Usage
 
@@ -21,7 +20,7 @@ git init --bare $HOME/dotfiles
 /usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME pull origin main
 ```
 
-- Restart the shell to register the configuration settings
+- Restart the terminal to register the configuration settings
 
 - Changes to the dotfiles repository are updated to the remote using: 
 ```bash
@@ -31,7 +30,7 @@ dotfiles push -u origin main
 ```
 
 - Note that the "dotfiles" command is an alias for git, specific to the $HOME/dotfiles directory.
-  See .aliases for more information
+  See .bashrc aliases for more information
 
 - Note that you will need to install 'vim-plug' to have access to the vim
   configuration. Do this after pulling the repo from gitlab.
