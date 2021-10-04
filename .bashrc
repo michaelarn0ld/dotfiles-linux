@@ -70,4 +70,5 @@ HOST="$a\h$z:"                                                    # hostname:
 DIR="$b\W"                                                        # directory
 BRANCH="$z\$(git_branch -l)$p\$(git_branch)$z\$(git_branch -r)$x" #(git_branch)
 
-PS1="$VENV$USER$HOST$DIR$BRANCH$ "
+export PS1="$VENV$USER$HOST$DIR$BRANCH$ "
+PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
