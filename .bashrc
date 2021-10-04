@@ -54,6 +54,7 @@ alias ls='ls -F --color'
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
+alias c='clear'
 
 
 
@@ -65,10 +66,10 @@ alias ....='cd ../../../'
 VIRTUAL_ENV_DISABLE_PROMPT=1;
 
 VENV="$r\$(venv_name)"                                            # (venv_name)
-USER="$g\u$z$PROMPT_AT"                                           # username@
+NAME="$g\u$z$PROMPT_AT"                                           # username@
 HOST="$a\h$z:"                                                    # hostname:
 DIR="$b\W"                                                        # directory
 BRANCH="$z\$(git_branch -l)$p\$(git_branch)$z\$(git_branch -r)$x" #(git_branch)
 
-export PS1="$VENV$USER$HOST$DIR$BRANCH$ "
+export PS1="$VENV$NAME$HOST$DIR$BRANCH$ "
 PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
