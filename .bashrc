@@ -1,12 +1,13 @@
 # ------------------------------ ALIASES -------------------------------
 
+alias c='clear'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias grep='grep --color=always'
 alias ls='ls -F --color'
+alias vi='vim'
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-alias c='clear'
-alias grep='grep --color=always'
 
 
 
