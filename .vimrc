@@ -22,7 +22,7 @@ set nowrap                " do not wrap lines of text
 set ignorecase            " search case insensitive...
 set smartcase             " ...but not if it begins with upper case
 set incsearch             " highlight search matches while typing
-set colorcolumn=72        " show wall at col 72 so I know where to wrap
+set colorcolumn=80        " show wall at col 80 so I know where to wrap
 
 " Backups, swaps, and undos 
 set undofile
