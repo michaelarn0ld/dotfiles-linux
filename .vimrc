@@ -20,7 +20,7 @@ set smartindent           " ...and do the right thing (mostly)
 set nu                    " show line numbers on left side
 set nowrap                " do not wrap lines of text
 set ignorecase            " search case insensitive...
-set smartcase             " ...but not if it begins with upper case
+set smartcase             " ...but not if the search has upper case
 set incsearch             " highlight search matches while typing
 set colorcolumn=80        " show wall at col 80 so I know where to wrap
 
