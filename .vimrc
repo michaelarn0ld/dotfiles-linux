@@ -10,19 +10,19 @@ Plug 'mattn/emmet-vim'
 call plug#end()
 
 " Some basics
-set noerrorbells                " no beeps
-set tabstop=4                   " tab is 4 columns 
-set softtabstop=4               " tab in insert mode is 4 columns
-set shiftwidth=4                " indenting is 4 columns
-set expandtab                   " tab in insert mode produces spaces
-set autoindent                  " auto-indents new lines...
-set smartindent                 " ...and do the right thing (mostly)
-set nu                          " show line numbers on left side
-set nowrap                      " do not wrap lines of text
-set ignorecase                  " search case insensitive...
-set smartcase                   " ...but not if it begins with upper case
-set incsearch                   " highlight search matches while typing
-set colorcolumn=80              " show wall at col 80 so I know where to wrap
+set noerrorbells          " no beeps
+set tabstop=4             " tab is 4 columns 
+set softtabstop=4         " tab in insert mode is 4 columns
+set shiftwidth=4          " indenting is 4 columns
+set expandtab             " tab in insert mode produces spaces
+set autoindent            " auto-indents new lines...
+set smartindent           " ...and do the right thing (mostly)
+set nu                    " show line numbers on left side
+set nowrap                " do not wrap lines of text
+set ignorecase            " search case insensitive...
+set smartcase             " ...but not if it begins with upper case
+set incsearch             " highlight search matches while typing
+set colorcolumn=72        " show wall at col 72 so I know where to wrap
 
 " Backups, swaps, and undos 
 set undofile

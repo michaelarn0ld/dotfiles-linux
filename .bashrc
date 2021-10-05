@@ -2,7 +2,6 @@
 # ----------------------------- VARIABLES ------------------------------
 # ----------------------------------------------------------------------
 
-PROMPT_AT=@
 r='\[\e[31m\]' # red
 g='\[\e[32m\]' # green
 y='\[\e[33m\]' # yellow
@@ -55,6 +54,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias c='clear'
+alias grep='grep --color=always'
 
 
 
@@ -65,11 +65,11 @@ alias c='clear'
 # disable the standard prompt for virtual environment
 VIRTUAL_ENV_DISABLE_PROMPT=1;
 
-VENV="$r\$(venv_name)"                                            # (venv_name)
-NAME="$g\u$z$PROMPT_AT"                                           # username@
-HOST="$a\h$z:"                                                    # hostname:
-DIR="$b\W"                                                        # directory
-BRANCH="$z\$(git_branch -l)$p\$(git_branch)$z\$(git_branch -r)$x" #(git_branch)
+VENV="$r\$(venv_name)"                           
+NAME="$g\u$z"                         
+HOST="$a\h$z"                                 
+DIR="$b\W"                                    
+BRANCH="$z\$(git_branch -l)$p\$(git_branch)$z\$(git_branch -r)$x" 
 
-export PS1="$VENV$NAME$HOST$DIR$BRANCH$ "
+export PS1="$VENV$NAME@$HOST:$DIR$BRANCH$ "
 PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
