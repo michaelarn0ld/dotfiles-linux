@@ -29,7 +29,6 @@ z='\[\e[30m\]' # black
 
 export EDITOR=vi
 export GOPATH="$HOME/.local/share/go"
-export GOBIN="$HOME/.local/bin"
 export PUBLIC="$HOME/Public"
 export PRIVATE="$HOME/Private"
 export REPOS="$PUBLIC/repos"
@@ -90,7 +89,7 @@ path_append \
     "$HOME/.local/bin" \
     "$BASH_SCRIPTS" \
     "$SH_SCRIPTS" \
-    "$GOPATH" \
+    "$GOPATH/bin" \
     /usr/local/bin \
     /usr/local/sbin \
     /usr/local/games \
@@ -122,3 +121,9 @@ PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
 # ----------------------------- REMAPPING ------------------------------
 
 test -n "$DISPLAY" && setxkbmap -option caps:escape &>/dev/null    # esc -> caps
+
+
+
+# ---------------------------- WORKSPACES ------------------------------
+
+export GOPATH="$GOPATH:$PUBLIC/boost/go"    # add new workspace for go
