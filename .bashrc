@@ -27,14 +27,15 @@ z='\[\e[30m\]' # black
 
 # ----------------------- ENVIRONMENT VARIABLES ------------------------
 
-export BASH_SCRIPTS="$HOME/.local/bin/bash-scripts"
-export EDITOR=vim
-export GOROOT="/usr/local/go"
-export PRIVATE="$HOME/Private"
+export EDITOR=vi
 export PUBLIC="$HOME/Public"
-export SH_SCRIPTS="$HOME/.local/bin/sh-scripts"
-export ZETDIR="$PUBLIC/repos/zettelkasten-public"
-export ZETDIR_P="$PRIVATE/repos/zettelkasten-private"
+export PRIVATE="$HOME/Private"
+export REPOS="$PUBLIC/repos"
+export REPOS_PRIVATE="$PRIVATE/repos"
+export SH_SCRIPTS="$REPOS/sh-scripts"
+export BASH_SCRIPTS="$REPOS/bash-scripts"
+export ZETDIR="$REPOS/zettelkasten-public"
+export ZETDIR_PRIVATE="$REPOS_PRIVATE/zettelkasten-private"
 
 
 
@@ -86,11 +87,11 @@ set -o vi
 path_append \
     "$HOME/.local/bin" \
     "$BASH_SCRIPTS" \
-    "$GOROOT/bin" \
     "$SH_SCRIPTS" \
     /usr/local/bin \
     /usr/local/sbin \
     /usr/local/games \
+    /usr/local/go/bin \
     /usr/bin \
     /usr/sbin \
     /usr/games \
