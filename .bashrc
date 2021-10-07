@@ -28,6 +28,8 @@ z='\[\e[30m\]' # black
 # ----------------------- ENVIRONMENT VARIABLES ------------------------
 
 export EDITOR=vi
+export GOPATH="$HOME/.local/share/go"
+export GOBIN="$HOME/.local/bin"
 export PUBLIC="$HOME/Public"
 export PRIVATE="$HOME/Private"
 export REPOS="$PUBLIC/repos"
@@ -88,6 +90,7 @@ path_append \
     "$HOME/.local/bin" \
     "$BASH_SCRIPTS" \
     "$SH_SCRIPTS" \
+    "$GOPATH" \
     /usr/local/bin \
     /usr/local/sbin \
     /usr/local/games \
