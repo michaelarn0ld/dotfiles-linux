@@ -1,7 +1,7 @@
 # ------------------------------ ALIASES -------------------------------
 
 alias c='clear'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias dot='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias grep='grep --color=always'
 alias ls='ls -F --color'
 alias vi='vim'
@@ -28,15 +28,14 @@ z='\[\e[30m\]' # black
 # ----------------------- ENVIRONMENT VARIABLES ------------------------
 
 export EDITOR=vi
-export GOPATH="$HOME/.local/share/go"
+export GOPATH="$HOME/.local/go"
 export PUBLIC="$HOME/Public"
-export PRIVATE="$HOME/Private"
 export REPOS="$PUBLIC/repos"
-export REPOS_PRIVATE="$PRIVATE/repos"
-export SH_SCRIPTS="$REPOS/sh-scripts"
-export BASH_SCRIPTS="$REPOS/bash-scripts"
-export ZETDIR="$REPOS/zettelkasten-public"
-export ZETDIR_PRIVATE="$REPOS_PRIVATE/zettelkasten-private"
+export GLREPOS="$REPOS/gitlab.com/michaelarn0ld"
+export SH_SCRIPTS="$GLREPOS/sh-scripts"
+export BASH_SCRIPTS="$GLREPOS/bash-scripts"
+export ZETDIR="$GLREPOS/zettelkasten-public"
+export ZETDIR_PRIVATE="$GLREPOS/zettelkasten-private"
 
 
 
@@ -121,9 +120,3 @@ PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
 # ----------------------------- REMAPPING ------------------------------
 
 test -n "$DISPLAY" && setxkbmap -option caps:escape &>/dev/null    # esc -> caps
-
-
-
-# ---------------------------- WORKSPACES ------------------------------
-
-export GOPATH="$GOPATH:$PUBLIC/boost/go"    # add new workspace for go
