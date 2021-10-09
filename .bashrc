@@ -114,9 +114,3 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 
 PS1="$VENV$NAME@$HOST:$DIR$BRANCH$ "
 PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
-
-
-
-# ----------------------------- REMAPPING ------------------------------
-
-test -n "$DISPLAY" && setxkbmap -option caps:escape &>/dev/null    # esc -> caps
