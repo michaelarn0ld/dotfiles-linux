@@ -8,6 +8,7 @@ alias vi='vim'
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
+alias ij='~/jetbrains/idea-IE-212.5457.63/bin/idea.sh'
 
 
 
@@ -32,6 +33,7 @@ export GOPATH="$HOME/.local/go"
 export PUBLIC="$HOME/Public"
 export REPOS="$PUBLIC/repos"
 export GLREPOS="$REPOS/gitlab.com/michaelarn0ld"
+export GHREPOS="$REPOS/github.com/marnold-dev10"
 export SH_SCRIPTS="$GLREPOS/sh-scripts"
 export BASH_SCRIPTS="$GLREPOS/bash-scripts"
 export ZETDIR="$GLREPOS/zettelkasten-public"
@@ -114,3 +116,11 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 
 PS1="$VENV$NAME@$HOST:$DIR$BRANCH$ "
 PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
+
+
+
+# -------------------------------- TMUX --------------------------------
+
+# Start tmux on interactive shell launch
+[[ -z "$TMUX" ]] && exec tmux
+

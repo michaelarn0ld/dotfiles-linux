@@ -36,6 +36,11 @@ syntax on
 set background=dark
 colorscheme gruvbox
 
+" File Navigation
+set nocompatible
+set wildmenu
+
+
 """"""""""""""""""""""""
 "       Mappings       "
 """"""""""""""""""""""""
@@ -47,6 +52,16 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 set mouse=
 set ttymouse=
+
+" Bracket, Quote, Parenthesis Completion
+inoremap ( ()<Esc>i
+inoremap { {}<Esc>i
+inoremap {<CR> {<CR>}<Esc>O
+inoremap [ []<Esc>i
+inoremap ' ''<Esc>i
+inoremap " ""<Esc>i
+inoremap /*<CR> /*<CR>*/<Esc>O
+
 
 """""""""""""""""""""""
 "       Plugins       "
