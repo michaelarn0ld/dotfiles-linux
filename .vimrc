@@ -10,6 +10,7 @@ Plug 'mattn/emmet-vim'
 call plug#end()
 
 " Some basics
+set nocompatible          " enable modern Vim features (not Vi compatible)
 set noerrorbells          " no beeps
 set tabstop=4             " tab is 4 columns 
 set softtabstop=4         " tab in insert mode is 4 columns
@@ -37,7 +38,6 @@ set background=dark
 colorscheme gruvbox
 
 " File Navigation
-set nocompatible
 set wildmenu
 
 
