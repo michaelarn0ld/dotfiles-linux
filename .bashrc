@@ -30,6 +30,7 @@ z='\[\e[30m\]' # black
 
 export EDITOR=vi
 export GOPATH="$HOME/.local/go"
+export MVNPATH="/opt/apache-maven-3.8.4"
 export PUBLIC="$HOME/Public"
 export REPOS="$PUBLIC/repos"
 export GLREPOS="$REPOS/gitlab.com/michaelarn0ld"
@@ -91,6 +92,7 @@ path_append \
     "$BASH_SCRIPTS" \
     "$SH_SCRIPTS" \
     "$GOPATH/bin" \
+    "$MVNPATH/bin" \
     /usr/local/bin \
     /usr/local/sbin \
     /usr/local/games \
