@@ -8,7 +8,6 @@ alias vi='vim'
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-alias ij='~/jetbrains/idea-IE-212.5457.63/bin/idea.sh'
 
 
 
@@ -34,7 +33,7 @@ export MVNPATH="/opt/apache-maven-3.8.4"
 export PUBLIC="$HOME/Public"
 export REPOS="$PUBLIC/repos"
 export GLREPOS="$REPOS/gitlab.com/michaelarn0ld"
-export GHREPOS="$REPOS/github.com/marnold-dev10"
+export GHREPOS="$REPOS/github.com/michaelarn0ld"
 export SH_SCRIPTS="$GLREPOS/sh-scripts"
 export BASH_SCRIPTS="$GLREPOS/bash-scripts"
 export ZETDIR="$GLREPOS/zettelkasten-public"
@@ -69,14 +68,14 @@ path_append() {
 }
 
 # get the current virtual environment, if it exists
-venv_name(){
-    local VENV
-    if [[ -n "$VIRTUAL_ENV" ]]; then
-        # Strip out the path and just leave the env name
-        VENV="${VIRTUAL_ENV##*/}" && echo "($VENV) "
-    fi
-
-}
+#venv_name(){
+#    local VENV
+#    if [[ -n "$VIRTUAL_ENV" ]]; then
+#        # Strip out the path and just leave the env name
+#        VENV="${VIRTUAL_ENV##*/}" && echo "($VENV) "
+#    fi
+#
+#}
 
 
 
@@ -114,9 +113,10 @@ DIR="$b\W"
 BRANCH="$z\$(git_branch -l)$p\$(git_branch)$z\$(git_branch -r)$x" 
 
 # disable the standard prompt for virtual environment
-VIRTUAL_ENV_DISABLE_PROMPT=1
+#VIRTUAL_ENV_DISABLE_PROMPT=1
 
-PS1="$VENV$NAME@$HOST:$DIR$BRANCH$ "
+#PS1="$VENV$NAME@$HOST:$DIR$BRANCH$ "
+PS1="$NAME@$HOST:$DIR$BRANCH$ "
 PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
 
 
@@ -124,5 +124,5 @@ PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
 # -------------------------------- TMUX --------------------------------
 
 # Start tmux on interactive shell launch
-[[ -z "$TMUX" ]] && exec tmux
+#[[ -z "$TMUX" ]] && exec tmux
 
