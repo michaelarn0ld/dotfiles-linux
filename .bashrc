@@ -28,6 +28,7 @@ z='\[\e[30m\]' # black
 # ----------------------- ENVIRONMENT VARIABLES ------------------------
 
 export EDITOR=vi
+export CARGO="$HOME/.cargo"
 export GOPATH="$HOME/.local/go"
 export MVNPATH="/opt/apache-maven-3.8.4"
 export PUBLIC="$HOME/Public"
@@ -91,6 +92,7 @@ path_append \
     "$BASH_SCRIPTS" \
     "$SH_SCRIPTS" \
     "$GOPATH/bin" \
+    "$CARGO/bin" \
     "$MVNPATH/bin" \
     /usr/local/bin \
     /usr/local/sbin \
