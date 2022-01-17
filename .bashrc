@@ -40,6 +40,8 @@ export BASH_SCRIPTS="$GLREPOS/bash-scripts"
 export ZETDIR="$GLREPOS/zettelkasten-public"
 export ZETDIR_PRIVATE="$GLREPOS/zettelkasten-private"
 
+
+
 # ----------------------------- FUNCTIONS ------------------------------
 
 # get the current git branch, if it exists
