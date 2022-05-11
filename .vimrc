@@ -12,9 +12,9 @@ call plug#end()
 " Some basics
 set nocompatible          " enable modern Vim features (not Vi compatible)
 set noerrorbells          " no beeps
-set tabstop=4             " tab is 4 columns 
-set softtabstop=4         " tab in insert mode is 4 columns
-set shiftwidth=4          " indenting is 4 columns
+set tabstop=2             " tab is 4 columns 
+set softtabstop=2         " tab in insert mode is 4 columns
+set shiftwidth=2          " indenting is 4 columns
 set expandtab             " tab in insert mode produces spaces
 set autoindent            " auto-indents new lines...
 set smartindent           " ...and do the right thing (mostly)
