@@ -33,12 +33,11 @@ export GOPATH="$HOME/.local/go"
 export MVNPATH="/opt/apache-maven-3.8.4"
 export PUBLIC="$HOME/Public"
 export REPOS="$PUBLIC/repos"
-export GLREPOS="$REPOS/gitlab.com/michaelarn0ld"
 export GHREPOS="$REPOS/github.com/michaelarn0ld"
-export SH_SCRIPTS="$GLREPOS/sh-scripts"
-export BASH_SCRIPTS="$GLREPOS/bash-scripts"
-export ZETDIR="$GLREPOS/zettelkasten-public"
-export ZETDIR_PRIVATE="$GLREPOS/zettelkasten-private"
+export SH_SCRIPTS="$GHREPOS/sh-scripts"
+export BASH_SCRIPTS="$GHREPOS/bash-scripts"
+export ZETDIR="$GHREPOS/zettelkasten-public"
+export ZETDIR_PRIVATE="$GHREPOS/zettelkasten-private"
 
 
 
