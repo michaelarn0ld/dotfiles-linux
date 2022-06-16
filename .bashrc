@@ -36,6 +36,7 @@ export REPOS="$PUBLIC/repos"
 export GHREPOS="$REPOS/github.com/michaelarn0ld"
 export SH_SCRIPTS="$GHREPOS/sh-scripts"
 export BASH_SCRIPTS="$GHREPOS/bash-scripts"
+export ZET_PATH="$GHREPOS/zet"
 export ZETDIR="$GHREPOS/zettelkasten-public"
 export ZETDIR_PRIVATE="$GHREPOS/zettelkasten-private"
 
@@ -89,6 +90,7 @@ set -o vi
 path_append \
     "$HOME/.local/bin" \
     "$BASH_SCRIPTS" \
+    "$ZET_PATH" \
     "$SH_SCRIPTS" \
     "$GOPATH/bin" \
     "$CARGO/bin" \
