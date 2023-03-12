@@ -94,10 +94,8 @@ path_append \
     /usr/local/bin \
     /usr/local/sbin \
     /usr/local/games \
-    /usr/local/go/bin \
     /usr/bin \
     /usr/sbin \
-    /usr/games \
     /bin \
     /sbin
 
