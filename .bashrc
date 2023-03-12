@@ -28,9 +28,6 @@ z='\[\e[30m\]' # black
 # ----------------------- ENVIRONMENT VARIABLES ------------------------
 
 export EDITOR=vi
-export CARGO="$HOME/.cargo"
-export GOPATH="$HOME/.local/go"
-export MVNPATH="/opt/apache-maven-3.8.4"
 export PUBLIC="$HOME/Public"
 export REPOS="$PUBLIC/repos"
 export GHREPOS="$REPOS/github.com/michaelarn0ld"
@@ -94,9 +91,6 @@ path_append \
     "$BASH_SCRIPTS" \
     "$ZET_PATH" \
     "$SH_SCRIPTS" \
-    "$GOPATH/bin" \
-    "$CARGO/bin" \
-    "$MVNPATH/bin" \
     /usr/local/bin \
     /usr/local/sbin \
     /usr/local/games \
@@ -123,11 +117,3 @@ BRANCH="$z\$(git_branch -l)$p\$(git_branch)$z\$(git_branch -r)$x"
 #PS1="$VENV$NAME@$HOST:$DIR$BRANCH$ "
 PS1="$NAME@$HOST:$DIR$BRANCH$ "
 PROMPT_COMMAND='echo -ne "\033]0;$(pwd)\007"'
-
-
-
-# -------------------------------- TMUX --------------------------------
-
-# Start tmux on interactive shell launch
-#[[ -z "$TMUX" ]] && exec tmux
-
