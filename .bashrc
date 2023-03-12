@@ -34,9 +34,7 @@ export GHREPOS="$REPOS/github.com/michaelarn0ld"
 export SH_SCRIPTS="$GHREPOS/sh-scripts"
 export BASH_SCRIPTS="$GHREPOS/bash-scripts"
 export ZET_PATH="$GHREPOS/zet"
-export ZETDIR="$GHREPOS/zettelkasten-public"
-export ZET_SCRIPT_DIR="/home/michael/Public/repos/github.com/michaelarn0ld/zet"
-export ZETDIR_PRIVATE="$GHREPOS/zettelkasten-private"
+export ZETDIR="$REPOS/local/zettelkasten-blackbox"
 export GITHUB_URL="https://github.com/michaelarn0ld"
 
 
