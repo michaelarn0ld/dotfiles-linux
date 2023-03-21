@@ -45,6 +45,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 cd ~/.vim && mkdir backupdir swapdir undodir
 ```
 
+- Note that private configurations will be available locally but not on the remote
+at `/etc/environment`
+
 ## License
 
 Copyright © 2021 Michael Arnold
